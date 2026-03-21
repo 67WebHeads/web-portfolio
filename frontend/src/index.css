@@ -1,0 +1,17 @@
+@import "tailwindcss";
+@plugin "daisyui";
+
+body, html{
+  height: 100%;
+  padding: 0px;
+  margin: 0px;
+  overflow-x: hidden;
+}
+
+div{
+  /* outline: 1px solid red; */
+}
+
+.container{
+  @apply mx-auto md:max-w-[80%] w-full;
+}
