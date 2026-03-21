@@ -1,11 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 @plugin "daisyui";
+
+
+@layer base {
+  * {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+}
 
 body, html{
   height: 100%;
   padding: 0px;
   margin: 0px;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 div{
@@ -14,4 +23,36 @@ div{
 
 .container{
   @apply mx-auto md:max-w-[80%] w-full;
+}
+
+/* aniateions */
+@keyframes conveyor {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+.conveyor-track {
+  animation: conveyor 22s linear infinite;
+  display: flex;
+  width: max-content;
+}
+.conveyor-track:hover {
+  animation-play-state: paused;
+}
+.conveyor-fade::before,
+.conveyor-fade::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 64px;
+  z-index: 10;
+  pointer-events: none;
+}
+.conveyor-fade::before {
+  left: 0;
+  background: linear-gradient(to right, white, transparent);
+}
+.conveyor-fade::after {
+  right: 0;
+  background: linear-gradient(to left, white, transparent);
 }

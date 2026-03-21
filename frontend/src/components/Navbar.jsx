@@ -1,29 +1,57 @@
-import React from 'react'
+import React, { useState } from 'react'
 import MenuIcon from '@mui/icons-material/Menu';
+import CloseIcon from '@mui/icons-material/Close';
+
+const navLinks = [
+  { label: 'About', href: '#about' },
+  { label: 'Services', href: '#services' },
+  { label: 'Works', href: '#works' },
+]
 
 function Navbar() {
+  const [menuOpen, setMenuOpen] = useState(false)
+
   return (
-    <div className="navbar top-0 sticky z-50 bg-white shadow-sm text-zinc-800 h-20 border-r border-s border-gray-200 p-8">
-        <div className="flex-none flex md:hidden ">
-            <button className="btn btn-square btn-ghost">
-                <MenuIcon/>
+    <>
+      <nav className="top-0 sticky z-50 bg-white text-zinc-800 h-20  px-6 md:px-12 flex items-center justify-between">
+        <a href="/" className="text-xl font-bold">{'</>'}</a>
+        <ul className='hidden md:flex items-center gap-6'>
+          {navLinks.map(({ label, href }) => (
+            <li key={label}>
+              <a href={href} className="text-sm text-gray-500 hover:text-black transition-colors">{label}</a>
+            </li>
+          ))}
+          <li>
+            <button className='rounded-full flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-500/30 cursor-pointer'>
+              Contact us
             </button>
+          </li>
+        </ul>
+        <button
+          className="md:hidden text-zinc-800 cursor-pointer"
+          onClick={() => setMenuOpen(!menuOpen)}
+        >
+          {menuOpen ? <CloseIcon /> : <MenuIcon />}
+        </button>
+      </nav>
+      {menuOpen && (
+        <div className="fixed inset-0 z-40 bg-white flex flex-col items-center justify-center gap-8 md:hidden">
+          {navLinks.map(({ label, href }) => (
+            <a
+              key={label}
+              href={href}
+              onClick={() => setMenuOpen(false)}
+              className="text-3xl font-bold text-zinc-800 hover:text-blue-600 transition-colors"
+            >
+              {label}
+            </a>
+          ))}
+          <button className='rounded-full px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white text-base font-medium transition-all cursor-pointer'>
+            Contact us
+          </button>
         </div>
-        <div className="flex-1">
-            <a className="text-xl">{'</>'}</a>
-        </div>
-        <div className="hidden md:flex md:flex-none">
-            <ul className='flex items-center justify-center gap-4 '>
-                <li><a href="">About</a></li>
-                <li><a href="">Services</a></li>
-                <li><a href="">Works</a></li>
-                <li><a href="">Contact Us!</a></li>
-            </ul>
-            {/* <button className="btn btn-square btn-ghost">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" className="inline-block h-5 w-5 stroke-current"> <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path> </svg>
-            </button> */}
-        </div>
-    </div>
+      )}
+    </>
   )
 }
 
