@@ -31,11 +31,11 @@ const socials = [
 
 function Footer() {
   return (
-    <footer className='border-t border-gray-200 text-black pt-12 pb-8 px-6 md:px-12 bg-white'>
+    <footer className='text-white pt-12 pb-8 px-6 md:px-12 bg-transparent'>
       <div className='flex flex-col md:flex-row justify-between gap-10 md:gap-0'>
         <div className='flex flex-col gap-3 max-w-xs'>
           <a href="/" className='text-2xl font-bold'>{"</>"}</a>
-          <p className='text-sm text-gray-500 leading-relaxed'>
+          <p className='text-sm text-white-200 leading-relaxed'>
             Building fast, scalable web systems for startups that want to grow without limits.
           </p>
           <div className='flex items-center gap-3 mt-1'>
@@ -45,7 +45,7 @@ function Footer() {
                 href={href}
                 target='_blank'
                 rel='noreferrer'
-                className='w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-500 hover:text-blue-600 hover:border-blue-300 transition-colors'
+                className='w-9 h-9 rounded-full border border-gray-200 flex items-center justify-center text-gray-200 hover:text-blue-600 hover:border-blue-300 transition-colors'
               >
                 {icon}
               </a>
@@ -53,11 +53,11 @@ function Footer() {
           </div>
         </div>
         <div className='flex flex-col gap-3'>
-          <p className='text-xs font-semibold uppercase tracking-widest text-gray-400'>Navigation</p>
+          <p className='text-xs font-semibold uppercase tracking-widest text-gray-100'>Navigation</p>
           <ul className='flex flex-col gap-2'>
             {navLinks.map(({ label, href }) => (
               <li key={label}>
-                <a href={href} className='text-sm text-gray-500 hover:text-black transition-colors'>
+                <a href={href} className='text-sm text-gray-200 hover:text-black transition-colors'>
                   {label}
                 </a>
               </li>
@@ -65,11 +65,12 @@ function Footer() {
           </ul>
         </div>
 
-        <div className='flex flex-col gap-3 max-w-xs'>
-          <p className='text-xs font-semibold uppercase tracking-widest text-gray-400'>Get in touch</p>
-          <p className='text-sm text-gray-500 leading-relaxed'>
-            Have a project in mind? We'd love to hear about it!
+        <div className='flex flex-col  max-w-xs'>
+          <p className='text-xs font-semibold uppercase tracking-widest text-gray-100'>Get in touch</p>
+          <p className='text-sm text-gray-200 leading-relaxed'>
+            Have a project in mind?  We'd love to hear about it!
           </p>
+          <div className="grow"></div>
           <button className='rounded-full flex items-center justify-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-500/30 active:translate-y-0 cursor-pointer w-fit'>
             Inquire now
           </button>

@@ -1,24 +1,42 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 
 const navLinks = [
   { label: 'About', href: '#about' },
   { label: 'Services', href: '#services' },
-  { label: 'Works', href: '#works' },
 ]
 
-function Navbar() {
+function Navbar({ heroRef }) {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
+
+  useEffect(() => {
+    if (!heroRef?.current) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setScrolled(!entry.isIntersecting)
+      },
+      { threshold: 0.1 }
+    )
+    observer.observe(heroRef.current)
+    return () => observer.disconnect()
+  }, [heroRef])
 
   return (
     <>
-      <nav className="top-0 sticky z-50 bg-white text-zinc-800 h-20  px-6 md:px-12 flex items-center justify-between">
+      <nav style={scrolled ? { background: 'linear-gradient(to bottom, rgba(0,0,0,0.85), rgba(0,0,0,0))'  } : {}}
+        className={`top-0 sticky z-50 h-20 px-6 md:px-12 flex items-center justify-between transition-all duration-500
+          ${scrolled
+            ? 'opacity-100 pointer-events-auto text-white'
+            : 'opacity-0 pointer-events-none  text-white'
+          }`}
+      >
         <a href="/" className="text-xl font-bold">{'</>'}</a>
         <ul className='hidden md:flex items-center gap-6'>
           {navLinks.map(({ label, href }) => (
             <li key={label}>
-              <a href={href} className="text-sm text-gray-500 hover:text-black transition-colors">{label}</a>
+              <a href={href} className="text-sm hover:text-blue-400 transition-colors">{label}</a>
             </li>
           ))}
           <li>
@@ -28,12 +46,13 @@ function Navbar() {
           </li>
         </ul>
         <button
-          className="md:hidden text-zinc-800 cursor-pointer"
+          className="md:hidden cursor-pointer"
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? <CloseIcon /> : <MenuIcon />}
         </button>
       </nav>
+
       {menuOpen && (
         <div className="fixed inset-0 z-40 bg-white flex flex-col items-center justify-center gap-8 md:hidden">
           {navLinks.map(({ label, href }) => (

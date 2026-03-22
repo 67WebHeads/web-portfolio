@@ -22,7 +22,7 @@ const faqs = [
 function FAQItem({ q, a, isOpen, onClick }) {
   return (
     <div
-      className="border border-gray-200 rounded-2xl bg-white overflow-hidden cursor-pointer"
+      className=" rounded-2xl  overflow-hidden cursor-pointer text-black"
       onClick={onClick}
     >
       <div className="flex items-center justify-between p-5">
@@ -32,7 +32,7 @@ function FAQItem({ q, a, isOpen, onClick }) {
         </span>
       </div>
       <div className={`transition-all duration-300 ease-in-out ${isOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}>
-        <p className="text-sm text-gray-500 leading-relaxed px-5 pb-5">{a}</p>
+        <p className="text-sm text-black/80 leading-relaxed px-5 pb-5">{a}</p>
       </div>
     </div>
   )
@@ -44,7 +44,7 @@ function FAQS() {
   const toggle = (i) => setOpenIndex(openIndex === i ? null : i)
 
   return (
-    <div className='min-h-dvh flex flex-col items-center justify-center text-black gap-4'>
+    <div className='min-h-dvh flex flex-col items-center justify-center text-white gap-4'>
 
       <div className="inline-flex w-fit items-center gap-2 px-3 py-2 rounded-full bg-blue-200 border border-blue-400 text-blue-700 text-xs font-medium shadow-xs">
         <span className="w-1.5 h-1.5 rounded-full bg-blue-500 inline-block" />
@@ -55,7 +55,7 @@ function FAQS() {
         Frequently Asked Questions
       </h2>
 
-      <p className='text-gray-500 text-base md:text-lg text-center'>
+      <p className='text-gray-200 text-base md:text-lg text-center'>
         Everything you need to know before getting started.
       </p>
 

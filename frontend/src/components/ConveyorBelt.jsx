@@ -32,8 +32,8 @@ const allTools = [...tools, ...tools]
 function ToolChip({ icon: Icon, label }) {
   return (
     <div className="flex items-center gap-2 px-4 py-2 rounded-full mx-3 shrink-0 select-none text-base md:text-lg">
-      <Icon className="text-gray-500 text-xl" />
-      <span className="font-medium text-gray-700 whitespace-nowrap">{label}</span>
+      <Icon className="text-white text-xl" />
+      <span className="font-medium text-white whitespace-nowrap">{label}</span>
     </div>
   )
 }
