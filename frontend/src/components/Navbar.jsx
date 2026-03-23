@@ -39,10 +39,26 @@ function Navbar({ heroRef }) {
               <a href={href} className="text-sm hover:text-blue-400 transition-colors">{label}</a>
             </li>
           ))}
-          <li>
-            <button className='rounded-full flex items-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-500/30 cursor-pointer'>
-              Contact us
-            </button>
+          <li className='flex items-center justify-center'>
+            <div
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-white text-xs font-medium backdrop-blur-xl relative"
+              style={{
+                background: 'linear-gradient(145deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.12) 100%)',
+                boxShadow: `
+                  inset 0 1.5px 1px rgba(255,255,255,0.55),
+                  inset 0 -1px 1px rgba(0,0,0,0.2),
+                  inset 0 0 16px rgba(255,255,255,0.08),
+                  0 4px 24px rgba(0,0,0,0.25)
+                `,
+              }}
+            >
+              <span className="absolute top-0 left-[12%] right-[12%] h-px rounded-full"
+                style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.7) 40%, rgba(255,255,255,0.7) 60%, transparent)' }}
+              />
+              <button className=' text-white text-sm font-medium transition-all cursor-pointer'>
+                Contact us
+              </button>
+            </div>
           </li>
         </ul>
         <button
