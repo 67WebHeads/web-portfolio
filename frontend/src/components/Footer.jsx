@@ -1,21 +1,27 @@
 import React from 'react'
-import {
-  SiGithub,
-} from "react-icons/si"
+import { motion } from 'framer-motion'
+import { SiGithub } from "react-icons/si"
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: 'easeOut', delay }
+  })
+}
 
 const navLinks = [
-  { label: 'About',    href: '#about' },
+  { label: 'About', href: '#about' },
   { label: 'Services', href: '#services' },
-  { label: 'FAQ',      href: '#faqs' },
+  { label: 'FAQ', href: '#faqs' },
 ]
 
 const socials = [
   {
     label: 'GitHub',
     href: 'https://github.com/67WebHeads',
-    icon: (
-      <SiGithub/>
-    ),
+    icon: <SiGithub />,
   },
   {
     label: 'LinkedIn',
@@ -30,9 +36,15 @@ const socials = [
 
 function Footer() {
   return (
-    <footer className='text-white pt-12 pb-8 px-6 md:px-12 bg-transparent'>
+    <motion.footer
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+      className='text-white pt-12 pb-8 px-6 md:px-12 bg-transparent'
+    >
       <div className='flex flex-col md:flex-row justify-between gap-10 md:gap-0'>
-        <div className='flex flex-col gap-3 max-w-xs'>
+
+        <motion.div variants={fadeUp} custom={0} className='flex flex-col gap-3 max-w-xs'>
           <a href="/" className='text-2xl font-bold'>{"</>"}</a>
           <p className='text-sm text-white-200 leading-relaxed'>
             Building fast, scalable web systems for startups that want to grow without limits.
@@ -50,8 +62,9 @@ function Footer() {
               </a>
             ))}
           </div>
-        </div>
-        <div className='flex flex-col gap-3'>
+        </motion.div>
+
+        <motion.div variants={fadeUp} custom={0.2} className='flex flex-col gap-3'>
           <p className='text-xs font-semibold uppercase tracking-widest text-gray-100'>Navigation</p>
           <ul className='flex flex-col gap-2'>
             {navLinks.map(({ label, href }) => (
@@ -62,20 +75,34 @@ function Footer() {
               </li>
             ))}
           </ul>
-        </div>
+        </motion.div>
 
-        <div className='flex flex-col  max-w-xs'>
+        <motion.div variants={fadeUp} custom={0.4} className='flex flex-col max-w-xs'>
           <p className='text-xs font-semibold uppercase tracking-widest text-gray-100 mb-2'>Get in touch</p>
-          <p className='text-sm text-gray-200 leading-relaxed '>
-            Have a project in mind?  We'd love to hear about it!
+          <p className='text-sm text-gray-200 leading-relaxed mb-5 md:mb-0'>
+            Have a project in mind? We'd love to hear about it!
           </p>
           <div className="grow"></div>
-          <button className='rounded-full flex items-center justify-center gap-2 px-5 py-2.5 bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium transition-all hover:-translate-y-0.5 hover:shadow-lg hover:shadow-blue-500/30 active:translate-y-0 cursor-pointer w-fit'>
+          <button
+            className="inline-flex w-fit items-center gap-2 px-5 py-2.5 rounded-full border border-blue-400/40 text-white text-sm font-medium backdrop-blur-xl relative cursor-pointer hover:shadow-lg hover:shadow-blue-500/30 active:translate-y-0 transition-all"
+            style={{
+              background: 'linear-gradient(145deg, rgba(59,130,246,0.45) 0%, rgba(59,130,246,0.15) 50%, rgba(59,130,246,0.3) 100%)',
+              boxShadow: `
+                inset 0 1.5px 1px rgba(255,255,255,0.35),
+                inset 0 -1px 1px rgba(0,0,0,0.2),
+                inset 0 0 16px rgba(59,130,246,0.15),
+                0 4px 24px rgba(59,130,246,0.2)
+              `,
+            }}
+          >
+            <span className="absolute top-0 left-[12%] right-[12%] h-px rounded-full"
+              style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.6) 40%, rgba(255,255,255,0.6) 60%, transparent)' }}
+            />
             Inquire now
           </button>
-        </div>
+        </motion.div>
       </div>
-    </footer>
+    </motion.footer>
   )
 }
 

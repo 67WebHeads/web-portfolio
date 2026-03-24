@@ -1,4 +1,14 @@
 import React, { useState } from 'react'
+import { motion } from 'framer-motion'
+
+const fadeUp = {
+  hidden: { opacity: 0, y:0 },
+  show: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: 'easeOut', delay }
+  })
+}
 
 const faqs = [
   {
@@ -19,9 +29,14 @@ const faqs = [
   },
 ]
 
-function FAQItem({ q, a, isOpen, onClick }) {
+function FAQItem({ q, a, isOpen, onClick, delay }) {
   return (
-    <div
+    <motion.div
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, amount: 0.2 }}
+      custom={delay}
+      variants={fadeUp}
       className="rounded-2xl overflow-hidden cursor-pointer border border-white/15 backdrop-blur-md transition-all duration-300"
       style={{
         background: isOpen
@@ -40,7 +55,7 @@ function FAQItem({ q, a, isOpen, onClick }) {
       <div className={`transition-all duration-300 ease-in-out ${isOpen ? 'max-h-40 opacity-100' : 'max-h-0 opacity-0'}`}>
         <p className="text-sm text-white/70 leading-relaxed px-5 pb-5">{a}</p>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
@@ -50,7 +65,12 @@ function FAQS() {
 
   return (
     <section id="faqs" className='min-h-dvh flex flex-col items-center justify-center text-white gap-4'>
-      <div
+      <motion.div
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        custom={0}
+        variants={fadeUp}
         className="inline-flex items-center gap-2 px-4 py-2 mb-4 rounded-full border border-white/20 text-white text-xs font-medium backdrop-blur-xl relative"
         style={{
           background: 'linear-gradient(145deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.12) 100%)',
@@ -67,14 +87,29 @@ function FAQS() {
         />
         <span className="w-1.5 h-1.5 rounded-full bg-blue-400 inline-block shadow-[0_0_6px_rgba(59,130,246,0.6)]" />
         FAQs
-      </div>
+      </motion.div>
 
-      <h2 className='text-4xl md:text-5xl font-bold leading-tight text-center'>
+      <motion.h2
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        custom={0.1}
+        variants={fadeUp}
+        className='text-4xl md:text-5xl font-bold leading-tight text-center'
+      >
         Frequently Asked Questions
-      </h2>
-      <p className='text-white/60 text-base md:text-lg text-center'>
+      </motion.h2>
+
+      <motion.p
+        initial="hidden"
+        whileInView="show"
+        viewport={{ once: true, amount: 0.2 }}
+        custom={0.2}
+        variants={fadeUp}
+        className='text-white/60 text-base md:text-lg text-center'
+      >
         Everything you need to know before getting started.
-      </p>
+      </motion.p>
 
       <div className="mt-4 w-full max-w-2xl flex flex-col gap-3">
         {faqs.map(({ q, a }, i) => (
@@ -84,6 +119,7 @@ function FAQS() {
             a={a}
             isOpen={openIndex === i}
             onClick={() => toggle(i)}
+            delay={i * 0.1}
           />
         ))}
       </div>

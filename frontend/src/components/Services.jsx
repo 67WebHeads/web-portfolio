@@ -7,7 +7,8 @@ import WebAssetIcon from '@mui/icons-material/WebAsset';
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
 import TimelineIcon from '@mui/icons-material/Timeline';
 
-import screen from '../assets/screen.webp'
+
+import code from '../assets/code.webp'
 import business from '../assets/business.webp'
 import custom from '../assets/custom.webp'
 import data from '../assets/data.webp'
@@ -17,13 +18,13 @@ const services = [
     icon: <WebAssetIcon />,
     title: 'Business Website',
     desc: 'Get a simple, fast website to showcase your business online.',
-    image: screen
+    image: custom
   },
   {
     icon: <Code />,
     title: 'Custom System Development',
     desc: 'We build systems that fit how your business works.',
-    image: custom
+    image: code
   },
   {
     icon: <SettingsSuggestIcon />,
@@ -38,6 +39,10 @@ const services = [
     image: data
   },
 ]
+const glassBtn = {
+  background: 'linear-gradient(145deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.04) 100%)',
+  boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.3), 0 2px 8px rgba(0,0,0,0.2)'
+}
 
 function ServiceCard({ icon, title, desc, index, image }) {
   return (
@@ -46,7 +51,7 @@ function ServiceCard({ icon, title, desc, index, image }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className='relative flex flex-col gap-3 p-6 rounded-2xl shadow-md snap-start
+      className='relative flex flex-col gap-3 p-4 rounded-2xl shadow-md snap-start
         w-full h-auto min-h-[450px]
         md:shrink-0 md:w-[350px] md:h-[450px]'
       style={{
@@ -56,7 +61,17 @@ function ServiceCard({ icon, title, desc, index, image }) {
       }}
     >
       {/* <div className="absolute inset-0 bg-black/40 rounded-2xl"></div> */}
-      <div className='relative w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600'>
+      <div 
+        className="flex justify-center w-10 h-10 items-center rounded-xl border border-blue-400/40 text-white text-sm font-medium backdrop-blur-xl relative cursor-pointer hover:shadow-lg hover:shadow-blue-500/30 active:translate-y-0 transition-all"
+            style={{
+              background: 'linear-gradient(145deg, rgba(59,130,246,0.45) 0%, rgba(59,130,246,0.15) 50%, rgba(59,130,246,0.3) 100%)',
+              boxShadow: `
+                inset 0 1.5px 1px rgba(255,255,255,0.35),
+                inset 0 -1px 1px rgba(0,0,0,0.2),
+                inset 0 0 16px rgba(59,130,246,0.15),
+                0 4px 24px rgba(59,130,246,0.2)
+              `,
+            }}>
         {icon}
       </div>
       <div className="grow"></div>
@@ -74,10 +89,6 @@ function Services() {
     scrollRef.current.scrollBy({ left: dir * 370, behavior: 'smooth' })
   }
 
-  const glassBtn = {
-    background: 'linear-gradient(145deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 100%)',
-    boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.3), 0 2px 8px rgba(0,0,0,0.2)'
-  }
 
   return (
     <section id='services' className='min-h-dvh flex flex-col justify-center text-white'>
@@ -113,7 +124,6 @@ function Services() {
           </div>
         </div>
 
-        {/* Desktop-only nav arrows */}
         <div className="hidden md:flex items-center gap-2 shrink-0 pb-2">
           <button
             onClick={() => scroll(-1)}

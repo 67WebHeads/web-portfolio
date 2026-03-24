@@ -1,4 +1,6 @@
 import React from 'react'
+import { motion } from 'framer-motion'
+
 import {
   SiDocker,
   SiReact,
@@ -12,6 +14,8 @@ import {
   SiJavascript,
   SiHtml5,
 } from "react-icons/si"
+
+
 
 
 const tools = [
@@ -29,25 +33,45 @@ const tools = [
 ]
 const allTools = [...tools, ...tools]
 
+
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: (delay = 0) => ({
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: 'easeOut', delay }
+  })
+}
+
 function ToolChip({ icon: Icon, label }) {
   return (
-    <div className="flex items-center gap-2 px-4 py-2 rounded-full mx-3 shrink-0 select-none text-base md:text-lg">
+    <motion.div
+      initial="hidden"
+      animate="show"
+      custom={0.15}
+      variants={fadeUp}
+        className="flex items-center gap-2 px-4 py-2 rounded-full mx-3 shrink-0 select-none text-base md:text-lg">
       <Icon className="text-white text-xl" />
       <span className="font-medium text-white whitespace-nowrap">{label}</span>
-    </div>
+    </motion.div>
   )
 }
 
 function ConveyorBelt() {
   return (
     <>
-      <div className="overflow-hidden py-1 relative">
+      <motion.div 
+        initial="hidden"
+        animate="show"
+        custom={0}
+        variants={fadeUp} 
+        className="overflow-hidden py-1 relative">
         <div className="conveyor-track py-2">
           {allTools.map((tool, i) => (
             <ToolChip key={i} icon={tool.icon} label={tool.label} />
           ))}
         </div>
-      </div>
+      </motion.div>
     </>
   )
 }
