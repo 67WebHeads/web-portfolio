@@ -12,7 +12,7 @@ function App() {
   const heroRef = useRef(null)
 
   return (
-    <div className="flex flex-col w-full bg-white bg-cover bg-center" style={{ backgroundImage: `url(${background})` }}>
+    <div className="flex flex-col w-full bg-cover bg-center" style={{ backgroundImage: `url(${background})` }}>
       <Navbar heroRef={heroRef} />
       <div className="container p-4 md:p-0">
         <div ref={heroRef}>

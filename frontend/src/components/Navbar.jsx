@@ -70,20 +70,38 @@ function Navbar({ heroRef }) {
       </nav>
 
       {menuOpen && (
-        <div className="fixed inset-0 z-40 bg-white flex flex-col items-center justify-center gap-8 md:hidden">
+        <div
+          className={`fixed inset-0 z-40 flex flex-col items-center justify-center gap-8 md:hidden backdrop-blur-xl
+            ${menuOpen ? 'animate-fade-down pointer-events-auto' : 'animate-fade-up pointer-events-none'}`}
+          style={{ background: 'linear-gradient(160deg, rgba(0,0,0,0.92) 0%, rgba(10,15,40,0.95) 100%)' }}
+        >
           {navLinks.map(({ label, href }) => (
             <a
               key={label}
               href={href}
               onClick={() => setMenuOpen(false)}
-              className="text-3xl font-bold text-zinc-800 hover:text-blue-600 transition-colors"
+              className="text-3xl font-bold text-white hover:text-blue-400 transition-colors"
             >
               {label}
             </a>
           ))}
-          <button className='rounded-full px-8 py-3 bg-blue-600 hover:bg-blue-700 text-white text-base font-medium transition-all cursor-pointer'>
+          <div
+            className="inline-flex items-center px-8 py-3 rounded-full border border-white/20 text-white text-base font-medium backdrop-blur-xl relative cursor-pointer"
+            style={{
+              background: 'linear-gradient(145deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.12) 100%)',
+              boxShadow: `
+                inset 0 1.5px 1px rgba(255,255,255,0.55),
+                inset 0 -1px 1px rgba(0,0,0,0.2),
+                inset 0 0 16px rgba(255,255,255,0.08),
+                0 4px 24px rgba(0,0,0,0.25)
+              `,
+            }}
+          >
+            <span className="absolute top-0 left-[12%] right-[12%] h-px rounded-full"
+              style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.7) 40%, rgba(255,255,255,0.7) 60%, transparent)' }}
+            />
             Contact us
-          </button>
+          </div>
         </div>
       )}
     </>
