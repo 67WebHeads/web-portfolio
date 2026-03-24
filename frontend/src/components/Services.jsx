@@ -7,30 +7,35 @@ import WebAssetIcon from '@mui/icons-material/WebAsset';
 import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
 import TimelineIcon from '@mui/icons-material/Timeline';
 
+import screen from '../assets/screen.webp'
+import business from '../assets/business.webp'
+import custom from '../assets/custom.webp'
+import data from '../assets/data.webp'
+
 const services = [
   {
     icon: <WebAssetIcon />,
     title: 'Business Website',
     desc: 'Get a simple, fast website to showcase your business online.',
-    image: null
+    image: screen
   },
   {
     icon: <Code />,
     title: 'Custom System Development',
     desc: 'We build systems that fit how your business works.',
-    image: null
+    image: custom
   },
   {
     icon: <SettingsSuggestIcon />,
     title: 'Business Process Automation',
     desc: 'We help you save time by automating repetitive tasks.',
-    image: null
+    image: business
   },
   {
     icon: <TimelineIcon />,
     title: 'Data Analytics & Dashboards',
     desc: 'See your sales and performance clearly in one place.',
-    image: null
+    image: data
   },
 ]
 
@@ -41,7 +46,7 @@ function ServiceCard({ icon, title, desc, index, image }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, amount: 0.3 }}
       transition={{ duration: 0.4, delay: index * 0.1 }}
-      className='relative flex flex-col gap-3 p-6 rounded-2xl bg-gray-50 border border-gray-100 snap-start
+      className='relative flex flex-col gap-3 p-6 rounded-2xl shadow-md snap-start
         w-full h-auto min-h-[450px]
         md:shrink-0 md:w-[350px] md:h-[450px]'
       style={{
@@ -50,7 +55,7 @@ function ServiceCard({ icon, title, desc, index, image }) {
         backgroundPosition: 'center',
       }}
     >
-      <div className="absolute inset-0 bg-black/40 rounded-2xl"></div>
+      {/* <div className="absolute inset-0 bg-black/40 rounded-2xl"></div> */}
       <div className='relative w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600'>
         {icon}
       </div>
