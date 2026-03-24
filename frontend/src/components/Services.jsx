@@ -1,32 +1,35 @@
 import React, { useRef } from 'react'
-import { Code, Monitor, Storage, Security } from '@mui/icons-material'
+import { Code } from '@mui/icons-material'
 import { motion } from 'framer-motion'
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
+import WebAssetIcon from '@mui/icons-material/WebAsset';
+import SettingsSuggestIcon from '@mui/icons-material/SettingsSuggest';
+import TimelineIcon from '@mui/icons-material/Timeline';
 
 const services = [
   {
+    icon: <WebAssetIcon />,
+    title: 'Business Website',
+    desc: 'Get a simple, fast website to showcase your business online.',
+    image: null
+  },
+  {
     icon: <Code />,
-    title: 'Web development',
-    desc: 'Full-stack apps built with React, Node, and modern tools.',
+    title: 'Custom System Development',
+    desc: 'We build systems that fit how your business works.',
     image: null
   },
   {
-    icon: <Monitor />,
-    title: 'System Delivery',
-    desc: 'Launch your system fast without sacrificing quality.',
+    icon: <SettingsSuggestIcon />,
+    title: 'Business Process Automation',
+    desc: 'We help you save time by automating repetitive tasks.',
     image: null
   },
   {
-    icon: <Storage />,
-    title: 'Backend & APIs',
-    desc: 'Scalable server logic, databases, and REST or APIs.',
-    image: null
-  },
-  {
-    icon: <Security />,
-    title: 'System architecture',
-    desc: 'Designed to scale from day one with clean, maintainable structure.',
+    icon: <TimelineIcon />,
+    title: 'Data Analytics & Dashboards',
+    desc: 'See your sales and performance clearly in one place.',
     image: null
   },
 ]

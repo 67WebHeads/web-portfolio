@@ -6,13 +6,13 @@ import About from './components/About'
 import Services from './components/Services'
 import FAQS from './components/FAQS'
 import Footer from './components/Footer'
-import hero from './assets/bg_main.webp'
+import background from './assets/Background.webp'
 
 function App() {
   const heroRef = useRef(null)
 
   return (
-    <div className="flex flex-col w-full bg-white bg-cover bg-center" style={{ backgroundImage: `url(${hero})` }}>
+    <div className="flex flex-col w-full bg-white bg-cover bg-center" style={{ backgroundImage: `url(${background})` }}>
       <Navbar heroRef={heroRef} />
       <div className="container p-4 md:p-0">
         <div ref={heroRef}>

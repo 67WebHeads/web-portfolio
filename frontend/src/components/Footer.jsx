@@ -6,8 +6,7 @@ import {
 const navLinks = [
   { label: 'About',    href: '#about' },
   { label: 'Services', href: '#services' },
-  { label: 'Works',    href: '#works' },
-  { label: 'FAQ',      href: '#faq' },
+  { label: 'FAQ',      href: '#faqs' },
 ]
 
 const socials = [
@@ -66,8 +65,8 @@ function Footer() {
         </div>
 
         <div className='flex flex-col  max-w-xs'>
-          <p className='text-xs font-semibold uppercase tracking-widest text-gray-100'>Get in touch</p>
-          <p className='text-sm text-gray-200 leading-relaxed'>
+          <p className='text-xs font-semibold uppercase tracking-widest text-gray-100 mb-2'>Get in touch</p>
+          <p className='text-sm text-gray-200 leading-relaxed '>
             Have a project in mind?  We'd love to hear about it!
           </p>
           <div className="grow"></div>
