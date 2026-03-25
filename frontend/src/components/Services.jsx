@@ -18,13 +18,13 @@ const services = [
     icon: <WebAssetIcon />,
     title: 'Business Website',
     desc: 'Get a simple, fast website to showcase your business online.',
-    image: custom
+    image: code
   },
   {
     icon: <Code />,
     title: 'Custom System Development',
     desc: 'We build systems that fit how your business works.',
-    image: code
+    image: custom
   },
   {
     icon: <SettingsSuggestIcon />,
