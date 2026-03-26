@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
-
+import logoFull from '../assets/logo-full.png'
+import logoIcon from '../assets/logo-icon.png'
 const navLinks = [
   { label: 'About', href: '#about' },
   { label: 'Services', href: '#services' },
@@ -32,7 +33,9 @@ function Navbar({ heroRef }) {
             : 'opacity-0 pointer-events-none  text-white'
           }`}
       >
-        <a href="/" className="text-xl font-bold">{'</>'}</a>
+        <a href="/" >
+          <img src={logoFull} alt="Logo" className="h-24 object-contain image-full" />
+        </a>
         <ul className='hidden md:flex items-center gap-6'>
           {navLinks.map(({ label, href }) => (
             <li key={label}>
@@ -40,8 +43,8 @@ function Navbar({ heroRef }) {
             </li>
           ))}
           <li className='flex items-center justify-center'>
-            <div
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-white text-xs font-medium backdrop-blur-xl relative"
+            <button
+              className="btn active:scale-98 hover:scale-101 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-white text-xs font-medium backdrop-blur-xl relative"
               style={{
                 background: 'linear-gradient(145deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.12) 100%)',
                 boxShadow: `
@@ -55,10 +58,10 @@ function Navbar({ heroRef }) {
               <span className="absolute top-0 left-[12%] right-[12%] h-px rounded-full"
                 style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.7) 40%, rgba(255,255,255,0.7) 60%, transparent)' }}
               />
-              <button className=' text-white text-sm font-medium transition-all cursor-pointer'>
+              <div className=' text-white text-sm font-medium transition-all cursor-pointer'>
                 Contact us
-              </button>
-            </div>
+              </div>
+            </button>
           </li>
         </ul>
         <button
@@ -85,8 +88,8 @@ function Navbar({ heroRef }) {
               {label}
             </a>
           ))}
-          <div
-            className="inline-flex items-center px-8 py-3 rounded-full border border-white/20 text-white text-base font-medium backdrop-blur-xl relative cursor-pointer"
+          <button
+            className="btn active:scale-98 hover:scale-101 inline-flex items-center px-8 py-3 rounded-full border border-white/20 text-white text-base font-medium backdrop-blur-xl relative cursor-pointer"
             style={{
               background: 'linear-gradient(145deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.12) 100%)',
               boxShadow: `
@@ -101,7 +104,7 @@ function Navbar({ heroRef }) {
               style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.7) 40%, rgba(255,255,255,0.7) 60%, transparent)' }}
             />
             Contact us
-          </div>
+          </button>
         </div>
       )}
     </>

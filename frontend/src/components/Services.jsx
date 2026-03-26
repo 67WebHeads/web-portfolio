@@ -74,7 +74,7 @@ function ServiceCard({ icon, title, desc, index, image }) {
             }}>
         {icon}
       </div>
-      <div className="grow"></div>
+      <div className="grow"></div> 
       <p className='relative font-bold text-lg'>{title}</p>
       <p className='relative text-sm text-gray-200 leading-relaxed'>{desc}</p>
     </motion.div>

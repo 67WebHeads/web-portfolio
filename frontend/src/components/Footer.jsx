@@ -84,7 +84,7 @@ function Footer() {
           </p>
           <div className="grow"></div>
           <button
-            className="inline-flex w-fit items-center gap-2 px-5 py-2.5 rounded-full border border-blue-400/40 text-white text-sm font-medium backdrop-blur-xl relative cursor-pointer hover:shadow-lg hover:shadow-blue-500/30 active:translate-y-0 transition-all"
+            className="btn active:scale-98 hover:scale-101 inline-flex w-fit items-center gap-2 px-5 py-2.5 rounded-full border border-blue-400/40 text-white text-sm font-medium backdrop-blur-xl relative cursor-pointer hover:shadow-lg hover:shadow-blue-500/30 active:translate-y-0 transition-all"
             style={{
               background: 'linear-gradient(145deg, rgba(59,130,246,0.45) 0%, rgba(59,130,246,0.15) 50%, rgba(59,130,246,0.3) 100%)',
               boxShadow: `
