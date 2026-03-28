@@ -26,7 +26,7 @@ const glassPill = {
   `,
 }
 
-const BUDGET_MIN = 20000
+const BUDGET_MIN = 15000
 const BUDGET_MAX = 100000
 
 function Form() {
@@ -169,10 +169,10 @@ function Form() {
                 />
               </div>
               <div className="flex justify-between text-xs text-white/30">
-                <span>₱20,000</span>
-                <span className="text-white/20 text-center text-[10px]">Deployment cost varies</span>
+                <span>₱15,000</span>
                 <span>₱100,000+</span>
               </div>
+              <span className="text-white/20 text-center text-[12px]">Final pricing based on features & complexity</span>
             </div>
 
             <div className="flex flex-col gap-1.5">
