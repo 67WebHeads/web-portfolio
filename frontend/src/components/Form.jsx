@@ -78,14 +78,14 @@ function Form() {
 
         <motion.a
           custom={0.5} variants={fadeUp}
-          href="https://instagram.com/YOUR_HANDLE"
+          href="https://instagram.com/webheads.67"
           target="_blank"
           rel="noopener noreferrer"
           className="inline-flex w-fit items-center gap-2 px-4 py-2 rounded-full border border-white/15 text-white/70 text-sm backdrop-blur-md hover:text-white transition-all"
           style={glassInput}
         >
           <InstagramIcon style={{ fontSize: 18 }} />
-           q
+           Webheads
         </motion.a>
       </motion.div>
 
@@ -186,7 +186,6 @@ function Form() {
               <p className="text-[11px] text-white/25">Details will be discussed further when in contact.</p>
             </div>
 
-            {/* Submit */}
             <button
               type="submit"
               className="relative inline-flex items-center justify-center px-6 py-3 rounded-full border border-blue-400/40 text-white text-sm font-medium backdrop-blur-xl cursor-pointer hover:shadow-lg hover:shadow-blue-500/30 hover:-translate-y-0.5 active:translate-y-0 transition-all mt-2"
@@ -195,7 +194,7 @@ function Form() {
               <span className="absolute top-0 left-[12%] right-[12%] h-px rounded-full"
                 style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.6) 40%, rgba(255,255,255,0.6) 60%, transparent)' }}
               />
-              Send Inquiry
+              Submit
             </button>
 
           </form>
