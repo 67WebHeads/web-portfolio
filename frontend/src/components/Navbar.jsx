@@ -3,6 +3,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import logoFull from '../assets/logo-full.png'
 import logoIcon from '../assets/logo-icon.png'
+
 const navLinks = [
   { label: 'About', href: '#about' },
   { label: 'Services', href: '#services' },
@@ -34,7 +35,8 @@ function Navbar({ heroRef }) {
           }`}
       >
         <a href="/" >
-          <img src={logoFull} alt="Logo" className="h-24 object-contain image-full" />
+          <img src={logoFull} alt="Logo" className="h-24 object-contain image-full hidden md:block" />
+          <img src={logoIcon} alt="Logo" className="h-18 object-contain image-full block md:hidden" />
         </a>
         <ul className='hidden md:flex items-center gap-6'>
           {navLinks.map(({ label, href }) => (
