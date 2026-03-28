@@ -106,7 +106,7 @@ function FAQS() {
         viewport={{ once: true, amount: 0.2 }}
         custom={0.2}
         variants={fadeUp}
-        className='text-white/60 text-base md:text-lg text-center'
+        className='text-s text-base md:text-lg text-center'
       >
         Everything you need to know before getting started.
       </motion.p>
