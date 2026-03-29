@@ -12,6 +12,7 @@ const fadeUp = {
 }
 
 const glassInput = {
+  
   background: 'linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%)',
   boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.12), 0 2px 8px rgba(0,0,0,0.15)',
 }
@@ -30,7 +31,7 @@ const BUDGET_MIN = 15000
 const BUDGET_MAX = 100000
 
 function Form() {
-  const [budget, setBudget] = useState(50000)
+  const [budget, setBudget] = useState(15000)
   const [submitted, setSubmitted] = useState(false)
 
   const budgetPercent = ((budget - BUDGET_MIN) / (BUDGET_MAX - BUDGET_MIN)) * 100
@@ -41,8 +42,7 @@ function Form() {
   }
 
   return (
-    <section id="contact-us" className='min-h-dvh flex flex-col md:flex-row items-center justify-center text-white gap-12 py-20'>
-
+    <section id="contact" className='min-h-dvh flex flex-col md:flex-row items-center justify-center text-white gap-12 py-20'>
       <motion.div
         initial="hidden"
         whileInView="show"
@@ -114,7 +114,7 @@ function Form() {
                 type="text"
                 required
                 placeholder="John Doe"
-                className="w-full px-4 py-3 rounded-xl border border-white/10 text-white text-sm placeholder:text-white/25 outline-none focus:border-blue-400/50 transition-all bg-transparent backdrop-blur-md"
+                className="w-full appearance-none px-4 py-3 rounded-xl border border-white/10 text-white text-sm placeholder:text-white/25 outline-none focus:border-blue-400/50 transition-all bg-transparent backdrop-blur-md"
                 style={glassInput}
               />
             </div>
@@ -125,7 +125,7 @@ function Form() {
                 type="email"
                 required
                 placeholder="example@email.com"
-                className="w-full px-4 py-3 rounded-xl border border-white/10 text-white text-sm placeholder:text-white/25 outline-none focus:border-blue-400/50 transition-all bg-transparent backdrop-blur-md"
+                className="w-full appearance-none px-4 py-3 rounded-xl border border-white/10 text-white text-sm placeholder:text-white/25 outline-none focus:border-blue-400/50 transition-all bg-transparent backdrop-blur-md"
                 style={glassInput}
               />
             </div>
@@ -135,44 +135,16 @@ function Form() {
               <select
                 required
                 defaultValue=""
-                className="w-full px-4 py-3 rounded-xl border border-white/10 text-white text-sm outline-none focus:border-blue-400/50 transition-all backdrop-blur-md appearance-none cursor-pointer"
+                className="w-full  px-4 py-3 rounded-xl border border-white/10 text-white text-sm outline-none focus:border-blue-400/50 transition-all backdrop-blur-md appearance-none cursor-pointer"
                 style={{ ...glassInput, background: 'linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%)' }}
               >
                 <option value="" disabled className="bg-zinc-900">Select a type</option>
-                <option value="website" className="bg-zinc-900">Website</option>
-                <option value="mobile" className="bg-zinc-900">Mobile App</option>
-                <option value="webapp" className="bg-zinc-900">Web App</option>
+                <option value="business-website" className="bg-zinc-900">Business Website</option>
+                <option value="custom-system" className="bg-zinc-900">Custom System </option>
+                <option value="bp-automation" className="bg-zinc-900">Business Process Automation</option>
+                <option value="data-analytics" className="bg-zinc-900">Data Analytics & Dashboard</option>
                 <option value="other" className="bg-zinc-900">Other</option>
               </select>
-            </div>
-
-            <div className="flex flex-col gap-3">
-              <div className="flex items-center justify-between">
-                <label className="text-xs text-white/50 font-medium tracking-wide uppercase">Budget Range</label>
-                <span className="text-sm font-semibold text-white">
-                  ₱{budget.toLocaleString()}
-                  {budget === BUDGET_MAX && <span className="text-white/40 text-xs ml-1">+</span>}
-                </span>
-              </div>
-              <div className="relative">
-                <input
-                  type="range"
-                  min={BUDGET_MIN}
-                  max={BUDGET_MAX}
-                  step={5000}
-                  value={budget}
-                  onChange={(e) => setBudget(Number(e.target.value))}
-                  className="w-full h-1.5 rounded-full appearance-none cursor-pointer"
-                  style={{
-                    background: `linear-gradient(to right, rgba(59,130,246,0.8) ${budgetPercent}%, rgba(255,255,255,0.15) ${budgetPercent}%)`,
-                  }}
-                />
-              </div>
-              <div className="flex justify-between text-xs text-white/30">
-                <span>₱15,000</span>
-                <span>₱100,000+</span>
-              </div>
-              <span className="text-white/20 text-center text-[12px]">Final pricing based on features & complexity</span>
             </div>
 
             <div className="flex flex-col gap-1.5">
@@ -180,15 +152,15 @@ function Form() {
               <textarea
                 rows={4}
                 placeholder="Tell us about your project "
-                className="w-full px-4 py-3 rounded-xl border border-white/10 text-white text-sm placeholder:text-white/25 outline-none focus:border-blue-400/50 transition-all bg-transparent backdrop-blur-md resize-none"
+                className="w-full px-4 py-3 rounded-xl border appearance-none border-white/10 text-white text-sm placeholder:text-white/25 outline-none focus:border-blue-400/50 transition-all bg-transparent backdrop-blur-md resize-none"
                 style={glassInput}
               />
-              <p className="text-[11px] text-white/25">Details will be discussed further when in contact.</p>
+              <p className="text-[11px] text-white/60">Details & price will be discussed further when in contact.</p>
             </div>
 
             <button
               type="submit"
-              className="relative inline-flex items-center justify-center px-6 py-3 rounded-full border border-blue-400/40 text-white text-sm font-medium backdrop-blur-xl cursor-pointer hover:shadow-lg hover:shadow-blue-500/30 hover:-translate-y-0.5 active:translate-y-0 transition-all mt-2"
+              className="relative inline-flex items-center justify-center px-6 py-3 rounded-full border border-blue-400/40 text-white text-sm font-medium backdrop-blur-xl cursor-pointer hover:shadow-lg hover:shadow-blue-500/30 hover:-translate-y-0.5 active:translate-y-0 transition-all mt-2 appearance-none"
               style={glassPill}
             >
               <span className="absolute top-0 left-[12%] right-[12%] h-px rounded-full"
@@ -200,7 +172,6 @@ function Form() {
           </form>
         )}
       </motion.div>
-
     </section>
   )
 }

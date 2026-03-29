@@ -21,6 +21,14 @@ body, html{
 div{
   /* outline: 1px solid red; */
 }
+input,
+select,
+button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  -webkit-tap-highlight-color: transparent;
+}
 
 .container{
   @apply mx-auto md:max-w-[80%] w-full;

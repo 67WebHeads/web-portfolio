@@ -1,6 +1,8 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import { SiGithub } from "react-icons/si"
+import InstagramIcon from '@mui/icons-material/Instagram'
+import logoIcon from '../assets/logo-icon.png'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -14,7 +16,7 @@ const fadeUp = {
 const navLinks = [
   { label: 'About', href: '#about' },
   { label: 'Services', href: '#services' },
-  { label: 'FAQ', href: '#faqs' },
+  { label: 'FAQs', href: '#faqs' },
 ]
 
 const socials = [
@@ -32,6 +34,11 @@ const socials = [
       </svg>
     ),
   },
+  {
+    label: 'Instagram',
+    href: 'https://instagram.com/webheads.67',
+    icon: <InstagramIcon />,
+  },
 ]
 
 function Footer() {
@@ -43,9 +50,10 @@ function Footer() {
       className='text-white pt-12 pb-8 px-6 md:px-12 bg-transparent'
     >
       <div className='flex flex-col md:flex-row justify-between gap-10 md:gap-0'>
-
         <motion.div variants={fadeUp} custom={0} className='flex flex-col gap-3 max-w-xs'>
-          <a href="/" className='text-2xl font-bold'>{"</>"}</a>
+          {/* <a href="/" className='text-2xl font-bold'>
+            <img src={logoIcon} alt="Logo" className="h-18 object-contain image-full" />
+          </a> */}
           <p className='text-sm text-white-200 leading-relaxed'>
             Building fast, scalable web systems for startups that want to grow without limits.
           </p>
@@ -83,7 +91,7 @@ function Footer() {
             Have a project in mind? We'd love to hear about it!
           </p>
           <div className="grow"></div>
-          <button
+          <a
             className="btn active:scale-98 hover:scale-101 inline-flex w-fit items-center gap-2 px-5 py-2.5 rounded-full border border-blue-400/40 text-white text-sm font-medium backdrop-blur-xl relative cursor-pointer hover:shadow-lg hover:shadow-blue-500/30 active:translate-y-0 transition-all"
             style={{
               background: 'linear-gradient(145deg, rgba(59,130,246,0.45) 0%, rgba(59,130,246,0.15) 50%, rgba(59,130,246,0.3) 100%)',
@@ -94,12 +102,13 @@ function Footer() {
                 0 4px 24px rgba(59,130,246,0.2)
               `,
             }}
+            href='#contact'
           >
             <span className="absolute top-0 left-[12%] right-[12%] h-px rounded-full"
               style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.6) 40%, rgba(255,255,255,0.6) 60%, transparent)' }}
             />
             Inquire now
-          </button>
+          </a>
         </motion.div>
       </div>
     </motion.footer>

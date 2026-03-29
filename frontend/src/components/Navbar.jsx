@@ -7,6 +7,7 @@ import logoIcon from '../assets/logo-icon.png'
 const navLinks = [
   { label: 'About', href: '#about' },
   { label: 'Services', href: '#services' },
+  { label: 'FAQs', href: '#faqs' },
 ]
 
 function Navbar({ heroRef }) {
@@ -45,7 +46,7 @@ function Navbar({ heroRef }) {
             </li>
           ))}
           <li className='flex items-center justify-center'>
-            <button
+            <a
               className="btn active:scale-98 hover:scale-101 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-white text-xs font-medium backdrop-blur-xl relative"
               style={{
                 background: 'linear-gradient(145deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.12) 100%)',
@@ -56,6 +57,7 @@ function Navbar({ heroRef }) {
                   0 4px 24px rgba(0,0,0,0.25)
                 `,
               }}
+              href='#contact'
             >
               <span className="absolute top-0 left-[12%] right-[12%] h-px rounded-full"
                 style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.7) 40%, rgba(255,255,255,0.7) 60%, transparent)' }}
@@ -63,7 +65,7 @@ function Navbar({ heroRef }) {
               <div className=' text-white text-sm font-medium transition-all cursor-pointer'>
                 Contact us
               </div>
-            </button>
+            </a>
           </li>
         </ul>
         <button
@@ -90,8 +92,8 @@ function Navbar({ heroRef }) {
               {label}
             </a>
           ))}
-          <button
-            className="btn active:scale-98 hover:scale-101 inline-flex items-center px-8 py-3 rounded-full border border-white/20 text-white text-base font-medium backdrop-blur-xl relative cursor-pointer"
+          <a
+            className=" active:scale-98 hover:scale-101 inline-flex items-center px-8 py-3 rounded-full border border-white/20 text-white text-base font-medium backdrop-blur-xl relative cursor-pointer"
             style={{
               background: 'linear-gradient(145deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.06) 50%, rgba(255,255,255,0.12) 100%)',
               boxShadow: `
@@ -101,12 +103,13 @@ function Navbar({ heroRef }) {
                 0 4px 24px rgba(0,0,0,0.25)
               `,
             }}
+            href="#contact"
           >
             <span className="absolute top-0 left-[12%] right-[12%] h-px rounded-full"
               style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.7) 40%, rgba(255,255,255,0.7) 60%, transparent)' }}
             />
             Contact us
-          </button>
+          </a>
         </div>
       )}
     </>
