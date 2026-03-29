@@ -1,6 +1,17 @@
-import React, { useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import InstagramIcon from '@mui/icons-material/Instagram'
+import emailjs from '@emailjs/browser'
+
+// ── EmailJS config ──────────────────────────────────────────
+// Replace these with your actual EmailJS credentials
+const EMAILJS_SERVICE_ID = 'service_0wivdfa'
+const EMAILJS_NOTIFY_TEMPLATE_ID = 'template_0cnnwdw'   // notification → webheadsph@gmail.com
+const EMAILJS_AUTOREPLY_TEMPLATE_ID = 'template_cyhdtsk' // auto-reply → sender
+const EMAILJS_PUBLIC_KEY = 'XbMJ_3DOJi9cZY_I4'
+
+// Replace with your Calendly (or Cal.com) booking link
+const BOOKING_LINK = 'https://calendly.com/webheadsph/30min'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -27,18 +38,63 @@ const glassPill = {
   `,
 }
 
-const BUDGET_MIN = 15000
-const BUDGET_MAX = 100000
+const PROJECT_LABELS = {
+  'business-website': 'Business Website',
+  'custom-system': 'Custom System',
+  'bp-automation': 'Business Process Automation',
+  'data-analytics': 'Data Analytics & Dashboard',
+  'other': 'Other',
+}
 
 function Form() {
-  const [budget, setBudget] = useState(15000)
+  const formRef = useRef(null)
   const [submitted, setSubmitted] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState(null)
 
-  const budgetPercent = ((budget - BUDGET_MIN) / (BUDGET_MAX - BUDGET_MIN)) * 100
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    setSubmitted(true)
+    setSending(true)
+    setError(null)
+
+    const formData = new FormData(formRef.current)
+    const name = formData.get('from_name')
+    const email = formData.get('from_email')
+    const projectType = formData.get('project_type')
+    const details = formData.get('message')
+
+    const templateParams = {
+      from_name: name,
+      from_email: email,
+      project_type: PROJECT_LABELS[projectType] || projectType,
+      message: details || 'No additional details provided.',
+      booking_link: BOOKING_LINK,
+    }
+
+    try {
+      // 1. Send notification to webheadsph@gmail.com
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_NOTIFY_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      )
+
+      // 2. Send auto-reply to the sender
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_AUTOREPLY_TEMPLATE_ID,
+        templateParams,
+        EMAILJS_PUBLIC_KEY
+      )
+
+      setSubmitted(true)
+    } catch (err) {
+      console.error('EmailJS error:', err)
+      setError('Something went wrong. Please try again or reach out on Instagram.')
+    } finally {
+      setSending(false)
+    }
   }
 
   return (
@@ -106,11 +162,12 @@ function Form() {
             <p className="text-white/50 text-sm">We'll be in touch soon.</p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col gap-5">
+          <form ref={formRef} onSubmit={handleSubmit} className="flex flex-col gap-5">
 
             <div className="flex flex-col gap-1.5">
               <label className="text-xs text-white/50 font-medium tracking-wide uppercase">Name</label>
               <input
+                name="from_name"
                 type="text"
                 required
                 placeholder="John Doe"
@@ -122,6 +179,7 @@ function Form() {
             <div className="flex flex-col gap-1.5">
               <label className="text-xs text-white/50 font-medium tracking-wide uppercase">Email</label>
               <input
+                name="from_email"
                 type="email"
                 required
                 placeholder="example@email.com"
@@ -133,14 +191,15 @@ function Form() {
             <div className="flex flex-col gap-1.5">
               <label className="text-xs text-white/50 font-medium tracking-wide uppercase">Project Type</label>
               <select
+                name="project_type"
                 required
                 defaultValue=""
-                className="w-full  px-4 py-3 rounded-xl border border-white/10 text-white text-sm outline-none focus:border-blue-400/50 transition-all backdrop-blur-md appearance-none cursor-pointer"
+                className="w-full px-4 py-3 rounded-xl border border-white/10 text-white text-sm outline-none focus:border-blue-400/50 transition-all backdrop-blur-md appearance-none cursor-pointer"
                 style={{ ...glassInput, background: 'linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%)' }}
               >
                 <option value="" disabled className="bg-zinc-900">Select a type</option>
                 <option value="business-website" className="bg-zinc-900">Business Website</option>
-                <option value="custom-system" className="bg-zinc-900">Custom System </option>
+                <option value="custom-system" className="bg-zinc-900">Custom System</option>
                 <option value="bp-automation" className="bg-zinc-900">Business Process Automation</option>
                 <option value="data-analytics" className="bg-zinc-900">Data Analytics & Dashboard</option>
                 <option value="other" className="bg-zinc-900">Other</option>
@@ -150,23 +209,29 @@ function Form() {
             <div className="flex flex-col gap-1.5">
               <label className="text-xs text-white/50 font-medium tracking-wide uppercase">Project Details</label>
               <textarea
+                name="message"
                 rows={4}
-                placeholder="Tell us about your project "
+                placeholder="Tell us about your project"
                 className="w-full px-4 py-3 rounded-xl border appearance-none border-white/10 text-white text-sm placeholder:text-white/25 outline-none focus:border-blue-400/50 transition-all bg-transparent backdrop-blur-md resize-none"
                 style={glassInput}
               />
               <p className="text-[11px] text-white/60">Details & price will be discussed further when in contact.</p>
             </div>
 
+            {error && (
+              <p className="text-red-400 text-sm">{error}</p>
+            )}
+
             <button
               type="submit"
-              className="relative inline-flex items-center justify-center px-6 py-3 rounded-full border border-blue-400/40 text-white text-sm font-medium backdrop-blur-xl cursor-pointer hover:shadow-lg hover:shadow-blue-500/30 hover:-translate-y-0.5 active:translate-y-0 transition-all mt-2 appearance-none"
+              disabled={sending}
+              className="relative inline-flex items-center justify-center px-6 py-3 rounded-full border border-blue-400/40 text-white text-sm font-medium backdrop-blur-xl cursor-pointer hover:shadow-lg hover:shadow-blue-500/30 hover:-translate-y-0.5 active:translate-y-0 transition-all mt-2 appearance-none disabled:opacity-50 disabled:cursor-not-allowed"
               style={glassPill}
             >
               <span className="absolute top-0 left-[12%] right-[12%] h-px rounded-full"
                 style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.6) 40%, rgba(255,255,255,0.6) 60%, transparent)' }}
               />
-              Submit
+              {sending ? 'Sending...' : 'Submit'}
             </button>
 
           </form>
