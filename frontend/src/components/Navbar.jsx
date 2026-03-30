@@ -7,7 +7,7 @@ import logoIcon from '../assets/logo-icon.png'
 const navLinks = [
   { label: 'About', href: '#about' },
   { label: 'Services', href: '#services' },
-  { label: 'FAQs', href: '#faqs' },
+  { label: 'Works', href: '#projects' },
 ]
 
 function Navbar({ heroRef }) {
@@ -104,6 +104,7 @@ function Navbar({ heroRef }) {
               `,
             }}
             href="#contact"
+            onClick={() => setMenuOpen(false)}
           >
             <span className="absolute top-0 left-[12%] right-[12%] h-px rounded-full"
               style={{ background: 'linear-gradient(90deg, transparent, rgba(255,255,255,0.7) 40%, rgba(255,255,255,0.7) 60%, transparent)' }}

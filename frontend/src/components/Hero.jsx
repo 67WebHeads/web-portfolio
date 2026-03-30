@@ -54,7 +54,7 @@ function Hero() {
           variants={fadeUp}
           className='text-base md:text-lg lg:text-xl text-gray-200 w-xs md:max-w-xl'
         >
-          Building powerful, scalable, and built for real-world use.
+          Building powerful, scalable, and built for real world use.
         </motion.p>
 
         <motion.div

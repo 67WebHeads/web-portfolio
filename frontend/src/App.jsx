@@ -8,6 +8,7 @@ import FAQS from './components/FAQS'
 import Footer from './components/Footer'
 import Form from './components/Form'
 import background from './assets/Background.webp'
+import Projects from './components/Projects'
 
 function App() {
   const heroRef = useRef(null)
@@ -28,6 +29,7 @@ function App() {
         <ConveyorBelt />
         <About />
         <Services />
+        <Projects />
         <FAQS />
         <Form/>
         <Footer />
