@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import akimi from '../assets/mock/akimi.webp'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -15,8 +16,8 @@ const projects = [
     url: 'akimistudio.cloud',
     title: 'Akimi Studio',
     desc: 'An appointment booking system for Akimi Studio. Clients browse services, pick a time slot, enter their info, and pay online.',
-    image: null,
-    redirectLink: 'https://akimistudio.com'
+    image: akimi,
+    redirectLink: 'https://akimistudio.cloud'
   },
   {
     url: '',
@@ -37,13 +38,13 @@ function ProjectCard({ url, title, desc, index, image ,redirectLink }) {
       variants={fadeUp}
       className="flex flex-col gap-3"
     >
-      <div className="mockup-browser bg-zinc-800 flex flex-col shadow-sm h-87.5 w-full">
+      <div className="mockup-browser bg-zinc-800 flex flex-col shadow-sm h-fit md:h-87.5 w-full">
         <div className="mockup-browser-toolbar">
           <div className="input">{url}</div>
         </div>
         <div className="flex items-center justify-center grow text-white/20 text-sm">
           <a href={redirectLink} target="_blank" rel="noopener noreferrer" className='w-full h-full'>
-            <img src={image} className="w-full h-full object-cover object-top" alt={title} />
+            <img src={image} className="w-full h-full object-contain object-top" alt={title} />
           </a>
         </div>
       </div>
