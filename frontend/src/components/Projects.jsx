@@ -1,6 +1,7 @@
 import React from 'react'
 import { motion } from 'framer-motion'
 import akimi from '../assets/mock/akimi.webp'
+import rAngeles from '../assets/mock/r_angeles.webp'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
@@ -21,9 +22,9 @@ const projects = [
   },
   {
     url: '',
-    title: 'RAngeles',
-    desc: 'A custom CRM for RAngeles, a property leasing company. It manages properties, tenants, and sales in one place.',
-    image: null,
+    title: 'R Angeles',
+    desc: 'A private custom CRM for R Angeles, a property leasing company. It manages properties, tenants, and sales in one place.',
+    image: rAngeles,
     redirectLink: null
   },
 ]
@@ -38,11 +39,11 @@ function ProjectCard({ url, title, desc, index, image ,redirectLink }) {
       variants={fadeUp}
       className="flex flex-col gap-3"
     >
-      <div className="mockup-browser bg-zinc-800 flex flex-col shadow-sm h-fit md:h-87.5 w-full">
+      <div className="mockup-browser bg-zinc-800 flex flex-col shadow-sm h-fit w-full">
         <div className="mockup-browser-toolbar">
           <div className="input">{url}</div>
         </div>
-        <div className="flex items-center justify-center grow text-white/20 text-sm">
+        <div className="flex items-center justify-center grow text-white/20 text-sm h-full">
           <a href={redirectLink} target="_blank" rel="noopener noreferrer" className='w-full h-full'>
             <img src={image} className="w-full h-full object-contain object-top" alt={title} />
           </a>
