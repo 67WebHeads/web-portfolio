@@ -3,14 +3,11 @@ import { motion } from 'framer-motion'
 import InstagramIcon from '@mui/icons-material/Instagram'
 import emailjs from '@emailjs/browser'
 
-// ── EmailJS config ──────────────────────────────────────────
-// Replace these with your actual EmailJS credentials
 const EMAILJS_SERVICE_ID = 'service_0wivdfa'
-const EMAILJS_NOTIFY_TEMPLATE_ID = 'template_0cnnwdw'   // notification → webheadsph@gmail.com
-const EMAILJS_AUTOREPLY_TEMPLATE_ID = 'template_cyhdtsk' // auto-reply → sender
+const EMAILJS_NOTIFY_TEMPLATE_ID = 'template_0cnnwdw'
+const EMAILJS_AUTOREPLY_TEMPLATE_ID = 'template_cyhdtsk'
 const EMAILJS_PUBLIC_KEY = 'XbMJ_3DOJi9cZY_I4'
 
-// Replace with your Calendly (or Cal.com) booking link
 const BOOKING_LINK = 'https://calendly.com/webheadsph/30min'
 
 const fadeUp = {
@@ -23,7 +20,6 @@ const fadeUp = {
 }
 
 const glassInput = {
-  
   background: 'linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%)',
   boxShadow: 'inset 0 1px 1px rgba(255,255,255,0.12), 0 2px 8px rgba(0,0,0,0.15)',
 }
@@ -38,19 +34,23 @@ const glassPill = {
   `,
 }
 
-const PROJECT_LABELS = {
-  'business-website': 'Business Website',
-  'custom-system': 'Custom System',
-  'bp-automation': 'Business Process Automation',
-  'data-analytics': 'Data Analytics & Dashboard',
-  'other': 'Other',
-}
+const PROJECT_OPTIONS = [
+  { value: 'business-website', label: 'Business Website' },
+  { value: 'custom-system', label: 'Custom System' },
+  { value: 'bp-automation', label: 'Business Process Automation' },
+  { value: 'data-analytics', label: 'Data Analytics & Dashboard' },
+  { value: 'other', label: 'Other' },
+]
+
+const PROJECT_LABELS = Object.fromEntries(PROJECT_OPTIONS.map(o => [o.value, o.label]))
 
 function Form() {
   const formRef = useRef(null)
   const [submitted, setSubmitted] = useState(false)
   const [sending, setSending] = useState(false)
   const [error, setError] = useState(null)
+  const [projectType, setProjectType] = useState('')
+  const [dropdownOpen, setDropdownOpen] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault()
@@ -60,7 +60,6 @@ function Form() {
     const formData = new FormData(formRef.current)
     const name = formData.get('from_name')
     const email = formData.get('from_email')
-    const projectType = formData.get('project_type')
     const details = formData.get('message')
 
     const templateParams = {
@@ -72,22 +71,8 @@ function Form() {
     }
 
     try {
-      // 1. Send notification to webheadsph@gmail.com
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_NOTIFY_TEMPLATE_ID,
-        templateParams,
-        EMAILJS_PUBLIC_KEY
-      )
-
-      // 2. Send auto-reply to the sender
-      await emailjs.send(
-        EMAILJS_SERVICE_ID,
-        EMAILJS_AUTOREPLY_TEMPLATE_ID,
-        templateParams,
-        EMAILJS_PUBLIC_KEY
-      )
-
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_NOTIFY_TEMPLATE_ID, templateParams, EMAILJS_PUBLIC_KEY)
+      await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_AUTOREPLY_TEMPLATE_ID, templateParams, EMAILJS_PUBLIC_KEY)
       setSubmitted(true)
     } catch (err) {
       console.error('EmailJS error:', err)
@@ -141,7 +126,7 @@ function Form() {
           style={glassInput}
         >
           <InstagramIcon style={{ fontSize: 18 }} />
-           Webheads
+          Webheads
         </motion.a>
       </motion.div>
 
@@ -171,7 +156,7 @@ function Form() {
                 type="text"
                 required
                 placeholder="John Doe"
-                className="w-full appearance-none px-4 py-3 rounded-xl border border-white/10 text-white text-sm placeholder:text-white/25 outline-none focus:border-blue-400/50 transition-all bg-transparent backdrop-blur-md"
+                className="w-full px-4 py-3 rounded-xl border border-white/10 text-white text-sm outline-none focus:border-blue-400/50 transition-all"
                 style={glassInput}
               />
             </div>
@@ -183,27 +168,43 @@ function Form() {
                 type="email"
                 required
                 placeholder="example@email.com"
-                className="w-full appearance-none px-4 py-3 rounded-xl border border-white/10 text-white text-sm placeholder:text-white/25 outline-none focus:border-blue-400/50 transition-all bg-transparent backdrop-blur-md"
+                className="w-full px-4 py-3 rounded-xl border border-white/10 text-white text-sm outline-none focus:border-blue-400/50 transition-all"
                 style={glassInput}
               />
             </div>
 
-            <div className="flex flex-col gap-1.5">
+            <div className="flex flex-col gap-1.5 relative">
               <label className="text-xs text-white/50 font-medium tracking-wide uppercase">Project Type</label>
-              <select
-                name="project_type"
-                required
-                defaultValue=""
-                className="w-full px-4 py-3 rounded-xl border border-white/10 text-white text-sm outline-none focus:border-blue-400/50 transition-all backdrop-blur-md appearance-none cursor-pointer"
-                style={{ ...glassInput, background: 'linear-gradient(145deg, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.03) 100%)' }}
+
+              <input type="hidden" name="project_type" value={projectType} />
+
+              <button
+                type="button"
+                onClick={() => setDropdownOpen(o => !o)}
+                className="w-full px-4 py-3 rounded-xl border border-white/10 text-sm text-left transition-all"
+                style={{ ...glassInput, color: projectType ? 'white' : 'rgba(255,255,255,0.25)' }}
               >
-                <option value="" disabled className="bg-zinc-900">Select a type</option>
-                <option value="business-website" className="bg-zinc-900">Business Website</option>
-                <option value="custom-system" className="bg-zinc-900">Custom System</option>
-                <option value="bp-automation" className="bg-zinc-900">Business Process Automation</option>
-                <option value="data-analytics" className="bg-zinc-900">Data Analytics & Dashboard</option>
-                <option value="other" className="bg-zinc-900">Other</option>
-              </select>
+                {projectType ? PROJECT_OPTIONS.find(o => o.value === projectType)?.label : 'Select a type'}
+              </button>
+
+              {dropdownOpen && (
+                <div
+                  className="absolute top-full left-0 right-0 mt-1 rounded-xl border border-white/10 overflow-hidden z-50"
+                  style={{ background: 'rgba(15,23,42,0.95)', backdropFilter: 'blur(12px)' }}
+                >
+                  {PROJECT_OPTIONS.map(opt => (
+                    <button
+                      key={opt.value}
+                      type="button"
+                      onClick={() => { setProjectType(opt.value); setDropdownOpen(false) }}
+                      className="dropdown-option w-full px-4 py-3 text-left text-sm text-white/80 hover:text-white hover:bg-white/10 transition-all"
+                      style={{ background: 'transparent' }}
+                    >
+                      {opt.label}
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
 
             <div className="flex flex-col gap-1.5">
@@ -212,7 +213,7 @@ function Form() {
                 name="message"
                 rows={4}
                 placeholder="Tell us about your project"
-                className="w-full px-4 py-3 rounded-xl border appearance-none border-white/10 text-white text-sm placeholder:text-white/25 outline-none focus:border-blue-400/50 transition-all bg-transparent backdrop-blur-md resize-none"
+                className="w-full px-4 py-3 rounded-xl border border-white/10 text-white text-sm outline-none focus:border-blue-400/50 transition-all resize-none"
                 style={glassInput}
               />
               <p className="text-[11px] text-white/60">Details & price will be discussed further when in contact.</p>
@@ -225,7 +226,7 @@ function Form() {
             <button
               type="submit"
               disabled={sending}
-              className="relative inline-flex items-center justify-center px-6 py-3 rounded-full border border-blue-400/40 text-white text-sm font-medium backdrop-blur-xl cursor-pointer hover:shadow-lg hover:shadow-blue-500/30 hover:-translate-y-0.5 active:translate-y-0 transition-all mt-2 appearance-none disabled:opacity-50 disabled:cursor-not-allowed"
+              className="relative inline-flex items-center justify-center px-6 py-3 rounded-full border border-blue-400/40 text-white text-sm font-medium backdrop-blur-xl cursor-pointer hover:shadow-lg hover:shadow-blue-500/30 hover:-translate-y-0.5 active:translate-y-0 transition-all mt-2 disabled:opacity-50 disabled:cursor-not-allowed"
               style={glassPill}
             >
               <span className="absolute top-0 left-[12%] right-[12%] h-px rounded-full"
