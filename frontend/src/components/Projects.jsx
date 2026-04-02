@@ -16,14 +16,14 @@ const projects = [
   {
     url: 'akimistudio.cloud',
     title: 'Akimi Studio',
-    desc: 'An appointment booking system for Akimi Studio. Clients browse services, pick a time slot, enter their info, and pay online.',
+    desc: 'An appointment booking system for Akimi Studio. Includes Admin Dashboard, Client Portal, and Payment Gateway. Clients browse services, pick a time slot, enter their info, and pay online.',
     image: akimi,
     redirectLink: 'https://akimistudio.cloud'
   },
   {
     url: '',
-    title: 'R Angeles',
-    desc: 'A private custom CRM for R Angeles, a property leasing company. It manages properties, tenants, and sales in one place.',
+    title: 'R. Angeles',
+    desc: 'A private custom CRM for R. Angeles, a property leasing company. It manages properties, tenants, handles payments, and sales in one place.',
     image: rAngeles,
     redirectLink: null
   },
