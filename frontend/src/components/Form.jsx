@@ -46,6 +46,7 @@ const PROJECT_LABELS = Object.fromEntries(PROJECT_OPTIONS.map(o => [o.value, o.l
 
 function Form() {
   const formRef = useRef(null)
+  const isSubmitting = useRef(false)
   const [submitted, setSubmitted] = useState(false)
   const [sending, setSending] = useState(false)
   const [error, setError] = useState(null)
@@ -54,6 +55,8 @@ function Form() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
+    if (isSubmitting.current) return
+    isSubmitting.current = true
     setSending(true)
     setError(null)
 
@@ -78,6 +81,7 @@ function Form() {
       console.error('EmailJS error:', err)
       setError('Something went wrong. Please try again or reach out on Instagram.')
     } finally {
+      isSubmitting.current = false
       setSending(false)
     }
   }
